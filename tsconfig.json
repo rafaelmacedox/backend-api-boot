@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+        "target": "es2017",
+        "module": "commonjs",
+        "allowJs": true,
+        "outDir": "deploy/dist",
+        "strictPropertyInitialization": false,
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "moduleResolution": "node"
+    }
+}
+  
