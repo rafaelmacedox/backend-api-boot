@@ -1,25 +1,13 @@
-import { NextFunction, Request, Response } from "express";
-import { IController } from "../IController";
-import { IUseCase } from "../IUseCase";
+import { Request } from "express";
+import { Controller } from "../IController";
 import { CustomerLoginDto } from "./customer-login.dto";
 
-export class CustomerLoginController implements IController {
+export class CustomerLoginController extends Controller {
 
-    constructor(
-        private useCase: IUseCase
-    ){}
+    impl(request: Request): CustomerLoginDto {
+        const loginDto: CustomerLoginDto = request.body;
 
-    async handle(request: Request, response: Response, next: NextFunction): Promise<Response> {
-        try {
-            const loginDto: CustomerLoginDto = request.body;
-
-            const token = await this.useCase.execute(loginDto);
-            const expiresIn = process.env.JWT_EXPIRESIN;
-
-            return response.status(200).send({ token, expiresIn: Number(expiresIn) });
-        } catch(err) {
-            next(err);
-        }
+        return loginDto;
     }
 
 }

@@ -4,6 +4,7 @@ import { ICustomerRepository } from "../../database/repositories/icustomer.repos
 import { IUseCase } from "../IUseCase";
 import { CustomerLoginDto } from "./customer-login.dto";
 import { CustomerStatusEnum } from "../../common/enum/customer-status.enum";
+import { IUseCaseReturn } from "../IUseCaseReturn";
 
 export class CustomerLoginUseCase implements IUseCase {
 
@@ -12,7 +13,7 @@ export class CustomerLoginUseCase implements IUseCase {
         private authService: AuthService
     ){}
 
-    async execute(data: CustomerLoginDto) {
+    async execute(data: CustomerLoginDto): Promise<IUseCaseReturn> {
         const customerAlreadyExists = await this.customerRepository.findByEmail(data.email);
 
         if(!customerAlreadyExists){
@@ -31,7 +32,14 @@ export class CustomerLoginUseCase implements IUseCase {
 
         await this.customerRepository.update(customerAlreadyExists);
 
-        return this.authService.createToken(customerAlreadyExists.id, customerAlreadyExists.roles);
+        return { 
+            status: 'success',
+            statusCode: 200,
+            data: {
+                token: this.authService.createToken(customerAlreadyExists.id, customerAlreadyExists.roles),
+                expiresIn: process.env.JWT_EXPIRESIN
+            }
+        }
     }
 
 }

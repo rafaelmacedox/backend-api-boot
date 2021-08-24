@@ -8,3 +8,4 @@
 ✔ Adicionar o swagger; @done(21-01-24 14:39)
 ✔ Adicionar um JSON do Insomnia já configurado; @done(21-01-24 14:40)
 ✔ Testar os ERRORS dentro dos middlewares (ROLES E AUTH) @done(21-01-24 13:52)
+☐ Adicionar novo padrão de Return para os useCases;
