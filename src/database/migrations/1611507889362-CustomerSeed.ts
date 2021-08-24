@@ -10,7 +10,7 @@ export class CustomerSeed1611507889362 implements MigrationInterface {
         const runSeed: boolean = ENVIRONMENT == 'typeorm';
 
         if (runSeed) {
-            await queryRunner.connection.getRepository(Customer).save(CustomerSeed());
+            await queryRunner.manager.getRepository(Customer).save(CustomerSeed());
         }
 
     }
