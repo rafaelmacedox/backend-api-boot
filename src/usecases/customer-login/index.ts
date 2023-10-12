@@ -1,7 +1,7 @@
 import { AuthService } from "../../common/auth/auth";
-import { CustomerRepository } from "../../database/repositories/impl/customer.repository";
 import { CustomerLoginUseCase } from "./customer-login.usecase";
 import { CustomerLoginController } from "./customer-login.controller";
+import CustomerRepository from "../../repositories/impl/customer.repository";
 
 const customerRepository = new CustomerRepository();
 const authService = new AuthService();

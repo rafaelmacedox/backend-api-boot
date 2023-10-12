@@ -1,5 +1,6 @@
 export enum CustomerStatusEnum {
-    Ativo = 1,
-    Inativo = 2,
-    Bloqueado = 3
+    Ativo = 'ATIVO',
+    Pendente = 'PENDENTE',
+    Inativo = 'INATIVO',
+    Bloqueado = 'BLOQUEADO'
 }

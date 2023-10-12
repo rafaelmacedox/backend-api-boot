@@ -15,7 +15,7 @@ export class AuthService {
         return this.passwordHelper.checkIfUnencryptedPasswordIsValid(unencryptedPassword, cryptedPassword);
     }
 
-    createToken(customerId: number, roles: string): string {
+    createToken(customerId: string, roles: string): string {
         return this.tokenHelper.signToken(customerId, roles);
     }
 

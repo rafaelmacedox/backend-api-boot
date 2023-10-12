@@ -13,11 +13,11 @@ export abstract class Controller {
         this.handle = this.handle.bind(this);
     }
 
-    abstract impl(request: Request): any;
+    abstract impl(request: Request, response: Response): any;
 
     async handle(request: Request, response: Response, next: NextFunction): Promise<Response> {
         try {
-            const data = this.impl(request);
+            const data = this.impl(request, response);
 
             const result = await this.useCase.execute(data);
 

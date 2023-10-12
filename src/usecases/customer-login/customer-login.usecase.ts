@@ -1,10 +1,10 @@
 import { AuthService } from "../../common/auth/auth";
-import { CustomerBlockedError, GeneralError, InvalidPassowrdError, UnauthorizedError, ValidationError } from "../../common/helpers/errors.helper";
-import { ICustomerRepository } from "../../database/repositories/icustomer.repository";
+import { CustomerBlockedError, InvalidPassowrdError, UnauthorizedError } from "../../common/helpers/errors.helper";
 import { IUseCase } from "../IUseCase";
 import { CustomerLoginDto } from "./customer-login.dto";
 import { CustomerStatusEnum } from "../../common/enum/customer-status.enum";
 import { IUseCaseReturn } from "../IUseCaseReturn";
+import ICustomerRepository from "../../repositories/icustomer.repository";
 
 export class CustomerLoginUseCase implements IUseCase {
 
@@ -27,10 +27,6 @@ export class CustomerLoginUseCase implements IUseCase {
         if(customerAlreadyExists.status == CustomerStatusEnum.Bloqueado || customerAlreadyExists.status == CustomerStatusEnum.Inativo){
             throw new CustomerBlockedError('Usuário Bloqueado ou Expirado');
         }
-
-        customerAlreadyExists.lastLogin = new Date();
-
-        await this.customerRepository.update(customerAlreadyExists);
 
         return { 
             status: 'success',
